@@ -1,0 +1,14 @@
+String.prototype.interpolate = function(props) {
+    return this.replace(/\{(\w+)\}/g, function(match, expr) {
+        return (props || window)[expr];
+    });
+};
+
+// Test:
+
+// Using the parameter (advised approach)
+document.getElementById("resultA").innerText = "Eruption 1: {eruption1}".interpolate({ eruption1: 112 });
+
+// Using the global scope
+var eruption2 = 116;
+document.getElementById("resultB").innerText = "Eruption 2: {eruption2}".interpolate();
